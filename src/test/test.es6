@@ -13,19 +13,19 @@ const fileReadAssertions = (fileReadPromise, cont) => {
     .catch(cont);
 }
 
-describe('Proposal tests', () => {
+describe('🚶Proposal tests', () => {
 
   const read = fs.readFile,
       sampleFile = path.resolve(__dirname, 'fixtures/sample.json');
 
-  it('\xF0\x9F\x9A\x80 Should return a Promise when a Proposal has arguments', function (done) {
+  it('🚶 Should return a Promise when a Proposal has arguments', function (done) {
     const readPromise = Proposal(read, sampleFile),
       isAPromise = (readPromise instanceof Promise);
     assert.ok(isAPromise, 'Proposal broke its Promise!');
     fileReadAssertions(readPromise, done);
   });
 
-  it('\xF0\x9F\x9A\x80 Returns a function that waits for more input Proposal has no arguments',
+  it('🚶 Returns a function that waits for more input Proposal has no arguments',
     function (done) {
       const chickenCurry = Proposal(read),
         curryIsntPromise = !(chickenCurry instanceof Promise),
