@@ -4,11 +4,15 @@
   "description": "Takes a node-style callbacking function and converts it into a Promise automagically",
   "main": "dist/index.js",
   "scripts": {
-    "test": "mocha test"
+    "compile": "babel -d dist/ src/",
+    "copydata": "mkdir -p dist/test/fixtures && cp -R src/test/fixtures/* dist/test/fixtures/",
+    "cc": "npm run compile && npm run copydata",
+    "prepublish": "npm run cc",
+    "test": "npm run cc && mocha dist/test/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vinniegarcia/covenant.git"
+    "url": "https://github.com/vinniegarcia/proposal.git"
   },
   "keywords": [
     "promise",
@@ -18,11 +22,14 @@
   "author": "Vinnie Garcia <vinnie@coev.co>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vinniegarcia/covenant/issues"
+    "url": "https://github.com/vinniegarcia/proposal/issues"
   },
-  "homepage": "https://github.com/vinniegarcia/covenant",
+  "homepage": "https://github.com/vinniegarcia/proposal",
   "devDependencies": {
-    "babel": "^4.5.1",
+    "babel": "^4.6.3",
     "mocha": "^2.1.0"
+  },
+  "dependencies": {
+    "core-js": "^0.6.1"
   }
 }
