@@ -31,7 +31,7 @@ describe('Proposal tests', () => {
         curryIsntPromise = !(chickenCurry instanceof Promise),
         curryIsFunction = (typeof chickenCurry === 'function');
 
-      assert.ok(curryIsntPromise, 'You made a Promise that you cannot keep!');
+      assert.ok(curryIsntPromise, 'You made an empty Promise! You know you won\'t keep it!');
       assert.ok(curryIsFunction, 'chickenCurry is not a funciton!');
 
       const curryRead = chickenCurry(sampleFile),
