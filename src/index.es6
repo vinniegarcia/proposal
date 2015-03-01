@@ -7,11 +7,13 @@ const denode = (resolve, reject) => (err, data) => (err) ? reject(err) : resolve
 //and turns it into a promise
 const promiseMe = (f, ...args) => new Promise((resolve, reject) => f(...args, denode(resolve, reject)));
 
+//waits for parameters before creating the Promise
+const curryWrap = (f) => (...more) => Proposal(f, ...more);
+
 function Proposal(errbackFn, ...args)  {
-  // 1. if args is empty, return a curried func that will return a promise
-  // 2. else return a promise to fulfill
-  const curryWrap = (...more) => Proposal(errbackFn, ...more);
-  return (args.length > 0) ? promiseMe(errbackFn, ...args) : curryWrap;
+  // if args given, return a promise for the operation.
+  // if not, return a new function that waits for more input.
+  return (args.length > 0) ? promiseMe(errbackFn, ...args) : curryWrap(errbackFn);
 }
 
 export default Proposal;
