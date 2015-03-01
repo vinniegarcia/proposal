@@ -1,5 +1,6 @@
 # Proposal
 [![npm version](https://badge.fury.io/js/proposal.svg)](http://badge.fury.io/js/proposal)
+[![travis build information](https://api.travis-ci.org/vinniegarcia/proposal.svg)](https://api.travis-ci.org/vinniegarcia/proposal.svg)
 
 Callback to Promise converter. A `Proposal` is a bridge between node-style callbacks and ECMAScript 6 `Promise`s.
 
