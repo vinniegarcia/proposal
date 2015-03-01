@@ -24,6 +24,7 @@ If no arguments are supplied, Propsal will return a function that, when executed
 A Proposal is a bridge function between node-style function/callbacks and Promises. You create it by calling `Proposal()` with 1 argument: the function you'd like to convert.
 ```javascript
 var fs = require('fs'),
+  Proposal = require('proposal'),
   readProposal = Proposal(fs.readFile);
 ```
 At this point, readProposal is a function, that when invoked with fs.readFile's parameters, will return a Promise containing the result of the file read operation. We'll use this Proposal twice below, once to read the system's HOSTS file and again to read the system's Apache configuration file.
@@ -51,6 +52,7 @@ You do this by passing the node-style function's arguments when you invoke Propo
 ```javascript
 var fs = require('fs'),
   path = require('path'),
+  Proposal = require('proposal'),
   filepath = path.resolve('data/example.json'),
   readFile = Proposal(fs.readFile, filepath);
 
