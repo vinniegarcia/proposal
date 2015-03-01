@@ -1,2 +1,2 @@
-# covenant
+# Proposal
 Callback to Promise converter
