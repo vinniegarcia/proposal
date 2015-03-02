@@ -21,7 +21,7 @@ If no arguments are supplied, `Propsal` will return a function that, when execut
 
 ### 1. Create a Proposal
 
-Craete a Proposal function by calling `Proposal()` with 1 argument: the function you'd like to convert.
+Create a Proposal function by calling `Proposal()` with 1 argument: the function you'd like to convert.
 ```javascript
 var fs = require('fs'),
   Proposal = require('proposal'),
