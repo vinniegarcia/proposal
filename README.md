@@ -2,7 +2,7 @@
 [![npm version](https://badge.fury.io/js/proposal.svg)](http://badge.fury.io/js/proposal)
 [![travis build information](https://api.travis-ci.org/vinniegarcia/proposal.svg)](https://travis-ci.org/vinniegarcia/proposal)
 
-Callback to Promise converter. A `Proposal` is a bridge between node-style callbacks and ECMAScript 6 `Promise`s.
+Callback to Promise converter. A `Proposal` is a bridge function between node-style asynchronous functions with callbacks in the form of `(err, data) => void` (which from here on out I'll refer to as `nodebacks`) and ECMAScript 6 `Promises`.
 
 ## Installation
 
@@ -11,17 +11,17 @@ npm i proposal --save
 ```
 
 ## Usage
-`Proposal(callbackFn[, args])` - takes a node-style callback (`err, data` parameters) and converts it into a Promise.
+`Proposal(nodeback[, args])` - takes a `nodeback` and converts it into a `Promise`.
 
-If arguments are supplied, the callbackFn is executed and a Promise is returned. Use it like any other Promise you've used before, with `.then()` and `.catch()`.
+If arguments are supplied, the `nodeback` is executed and a Promise is returned. Use it like any other Promise you've used before, with `.then()` and `.catch()`.
 
-If no arguments are supplied, Propsal will return a function that, when executed with its parameters, will then return a Promise. This is useful if, for example, you want to execute that function multiple times with different parameters.
+If no arguments are supplied, `Propsal` will return a function that, when executed with its parameters, will then return a Promise. This is useful if, for example, you want to execute that function multiple times to pass in different arguments.
 
 ## Examples
 
 ### 1. Create a Proposal
 
-A Proposal is a bridge function between node-style function/callbacks and Promises. You create it by calling `Proposal()` with 1 argument: the function you'd like to convert.
+Craete a Proposal function by calling `Proposal()` with 1 argument: the function you'd like to convert.
 ```javascript
 var fs = require('fs'),
   Proposal = require('proposal'),
@@ -47,7 +47,7 @@ hostsRead.then(function (txt) {
 
 ### 2. Create a Promise containing the result of a file read
 
-You do this by passing the node-style function's arguments when you invoke Proposal.
+You can skip the Proposal function and get a Promise directly by supplying the nodeback's arguments when invoking.
 
 ```javascript
 var fs = require('fs'),
