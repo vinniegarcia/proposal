@@ -13,9 +13,9 @@ npm i proposal --save
 ## Usage
 `Proposal(nodeback[, args])` - takes a `nodeback` and converts it into a `Promise`.
 
-If arguments are supplied, the `nodeback` is executed and a Promise is returned. Use it like any other Promise you've used before, with `.then()` and `.catch()`.
+If arguments are supplied, the `nodeback` is executed and a `Promise` is returned. Use it like any other Promise you've used before, with `.then()` and `.catch()`.
 
-If no arguments are supplied, `Propsal` will return a function that, when executed with its parameters, will then return a Promise. This is useful if, for example, you want to execute that function multiple times to pass in different arguments.
+If no arguments are supplied, `Propsal` will return a function that, when executed with its parameters, will then return a `Promise`. This is useful if, for example, you want to execute that function multiple times to pass in different arguments.
 
 ## Examples
 
@@ -27,7 +27,7 @@ var fs = require('fs'),
   Proposal = require('proposal'),
   readProposal = Proposal(fs.readFile);
 ```
-At this point, readProposal is a function, that when invoked with fs.readFile's parameters, will return a Promise containing the result of the file read operation. We'll use this Proposal twice below, once to read the system's HOSTS file and again to read the system's Apache configuration file.
+At this point, `readProposal` is a function, that when invoked with `fs.readFile`'s parameters, will return a `Promise` containing the result of the file read operation. We'll use this Proposal twice below, once to read the system's HOSTS file and again to read the system's Apache configuration file.
 ```javascript
 var path = require('path'),
   hostsFile = path.resolve('/etc/hosts'),
@@ -47,7 +47,7 @@ hostsRead.then(function (txt) {
 
 ### 2. Create a Promise containing the result of a file read
 
-You can skip the Proposal function and get a Promise directly by supplying the nodeback's arguments when invoking.
+You can skip the intermediate `Proposal` function and get a `Promise` directly by supplying the nodeback's arguments when invoking.
 
 ```javascript
 var fs = require('fs'),
