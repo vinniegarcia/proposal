@@ -64,5 +64,29 @@ var fs = require('fs'),
   });
 ```
 
-## Questions?
-Raise an issue and I'll get to it as soon as I can. Thanks for reading this far!
+## Questions
+
+1. *My nodeback doesn't take any arguments, just a callback. How can I get a Promise back 
+    instead of a Proposal?*
+    Just invoke the resulting Proposal. Example:
+    ```javascript
+    var proposal = require('proposal');
+
+    function closeConnection(callback) {
+      //this is an example of a nodeback with no arguments
+      callback(err, data);
+    }
+    //create the Proposal to close the connection
+    var closeProposal = Proposal(closeConnection);
+    //invoke the Proposal to return a Promise
+    var closePromise = closeProposal();
+    closePromise.then(function (data) {
+      //do something with your data
+    })
+    .catch(function (err) {
+      //handle your error
+    });
+    ```
+2. *I have another question that's not listed here.*
+
+    Raise an issue and I'll get to it as soon as I can. Thanks for reading this far!
