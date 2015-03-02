@@ -66,8 +66,9 @@ var fs = require('fs'),
 
 ## Questions
 
-1. *My nodeback doesn't take any arguments, just a callback. How can I get a Promise back 
-    instead of a Proposal?*
+1. _My nodeback doesn't take any arguments, just a callback. How can I get a Promise back 
+    instead of a Proposal?_
+    
     Just invoke the resulting Proposal. Example:
     ```javascript
     var proposal = require('proposal');
@@ -87,6 +88,6 @@ var fs = require('fs'),
       //handle your error
     });
     ```
-2. *I have another question that's not listed here.*
+2. _I have another question that's not listed here._
 
     Raise an issue and I'll get to it as soon as I can. Thanks for reading this far!
