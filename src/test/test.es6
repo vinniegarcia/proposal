@@ -52,14 +52,15 @@ describe(h1('Proposal tests'), () => {
     });
 
   it(cool('Tests a Proposal against a nodeback with no args'), function (done) {
-    const serv = http.createServer((req, res) => {
+    const handler = (req, res) => {
       console.log('hey');
       res.writeHead(200);
       res.end('hello world\n');
-    });
-
-    const closeProposal = Proposal(serv.close.bind(serv)),
+    },
+      serv = http.createServer(handler),
+      closeProposal = Proposal(serv.close.bind(serv)),
       isntAPromise = !(closeProposal instanceof Promise);
+
     assert.ok(isntAPromise, errify('You made an empty Promise with server.close!'));
 
     serv.on('listening', () => {
@@ -67,6 +68,7 @@ describe(h1('Proposal tests'), () => {
 
       const closePromise = closeProposal(),
         isAPromise = (closePromise instanceof Promise);
+
       assert.ok(isAPromise, errify('closePromise is not a Promise!'));
 
       closePromise.then(() => {
