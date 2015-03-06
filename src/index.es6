@@ -1,4 +1,4 @@
-import 'core-js/shim';
+import 'babel/polyfill';
 
 //convert the err,data callback to promise resolve/reject calls
 const denode = (resolve, reject) => (err, data) => (err) ? reject(err) : resolve(data);
