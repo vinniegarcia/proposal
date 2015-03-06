@@ -78,6 +78,13 @@ describe(h1('Proposal tests'), () => {
 
     });
 
+    it(cool('A-weits'), async function (done) {
+      const farley = await Proposal(read, sampleFile);
+      console.log(farley);
+      assert.ok(farley.name.includes('Farley'), 'Not Chris Farley!');
+      done();
+    });
+
     serv.listen(10000);
 
   });
