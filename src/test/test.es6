@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import http from 'http';
 import {emoji} from 'node-emoji';
+import 'babel/polyfill';
 import Proposal from '../index';
 
 const fileReadAssertions = (fileReadPromise, cont) => {
@@ -81,12 +82,15 @@ describe(h1('Proposal tests'), () => {
 
   });
 
-  it(cool('A-weits'), async function (done) {
-      const farley = await Proposal(read, sampleFile);
-      console.log(farley);
-      assert.ok(farley.name.includes('Farley'), 'Not Chris Farley!');
+  it(cool('A-weits'), function (done) {
+    this.timeout(5000);
+    // wrap in async IIFE to use await
+    (async () => {
+      const farley = JSON.parse(await Proposal(read, sampleFile));
+      assert.ok(farley && farley.name.includes('Farley'), 'Farley not found!');
       done();
-    });
+    }());
+  });
 
 
 });
