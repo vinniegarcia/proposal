@@ -10,6 +10,7 @@
     "prepublish": "npm run cc",
     "mocha": "npm run cc && ./node_modules/mocha/bin/_mocha dist/test/*.js",
     "istanbul": "npm run cc && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly dist/test/*.js",
+    "coverage": "npm run cc && istanbul cover ./node_modules/mocha/bin/_mocha --report html dist/test/*.js",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "test": "npm run istanbul && npm run coveralls"
   },
