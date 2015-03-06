@@ -1,6 +1,7 @@
 # Proposal
 [![npm version](https://badge.fury.io/js/proposal.svg)](http://badge.fury.io/js/proposal)
 [![travis build information](https://api.travis-ci.org/vinniegarcia/proposal.svg)](https://travis-ci.org/vinniegarcia/proposal)
+[![Coverage Status](https://coveralls.io/repos/vinniegarcia/proposal/badge.svg)](https://coveralls.io/r/vinniegarcia/proposal)
 
 Callback to Promise converter. A `Proposal` is a bridge function between node-style asynchronous functions with callbacks in the form of `(err, data) => void` (which from here on out I'll refer to as `nodebacks`) and ECMAScript 6 `Promises`.
 
@@ -71,7 +72,7 @@ var fs = require('fs'),
     
     Just invoke the resulting Proposal. Example:
     ```javascript
-    var proposal = require('proposal');
+    var Proposal = require('proposal');
 
     function closeConnection(callback) {
       //this is an example of a nodeback with no arguments
