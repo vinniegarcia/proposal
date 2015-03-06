@@ -89,7 +89,7 @@ var fs = require('fs'),
       //handle your error
     });
     ```
-2. _Does `Proposal` work with node crypto functions?_
+2. _Does `Proposal` work with node `crypto` functions?_
   
   Yes! As you may or may not know, many of the functions in nodejs's [`crypto`](http://nodejs.org/api/crypto.html) module, like [`randomBytes`](http://nodejs.org/api/crypto.html#crypto_crypto_randombytes_size_callback), are async when a callback is passed in but sync when the callback argument is omitted. `Proposal` will work with these and preserve asynchronicity. Example from the unit tests:
   ```javascript
