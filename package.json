@@ -8,7 +8,10 @@
     "copydata": "mkdir -p dist/test/fixtures && cp -R src/test/fixtures/* dist/test/fixtures/",
     "cc": "npm run compile && npm run copydata",
     "prepublish": "npm run cc",
-    "test": "npm run cc && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly dist/test/*.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "mocha": "npm run cc && ./node_modules/mocha/bin/_mocha dist/test/*.js",
+    "istanbul": "npm run cc && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly dist/test/*.js",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "test": "npm run istanbul && npm run coveralls"
   },
   "repository": {
     "type": "git",
