@@ -1,6 +1,8 @@
+'use strict';
+
 import {ok} from 'assert';
 import crypto from 'crypto';
-import {errify, h1, cool, fw} from './fixtures/emoji';
+import { h1, cool } from './fixtures/emoji';
 import Proposal from '../index';
 
 describe(h1('crypto tests where no callbacks makes a method sync'), () => {

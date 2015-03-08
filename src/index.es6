@@ -1,3 +1,5 @@
+'use strict';
+
 import 'babel/polyfill';
 
 //convert the err,data callback to promise resolve/reject calls

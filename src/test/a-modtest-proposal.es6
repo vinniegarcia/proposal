@@ -1,9 +1,10 @@
+'use strict';
 // builtins
 import {ok} from 'assert';
 import fs from 'fs';
 // local modules
 import {sample as sampleFile } from './fixtures/';
-import {errify, h1, cool, fw} from './fixtures/emoji';
+import {errify, h1, cool} from './fixtures/emoji';
 import Proposal from '../index';
 
 const fileReadAssertions = (fileReadPromise, cont) => {

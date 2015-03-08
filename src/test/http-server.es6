@@ -1,3 +1,4 @@
+'use strict';
 // builtins
 import http from 'http';
 import {ok} from 'assert';

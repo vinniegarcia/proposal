@@ -1,6 +1,8 @@
+'use strict';
+
 import {emoji} from 'node-emoji';
 
-const emojify = (emo, pre='') => (str) => `${pre}${emoji[emo]}  ${str}`,
+const emojify = (emo, pre='') => (str) => `${pre}${emoji[emo]} ${str}`,
   errify = emojify('poop'),
   h1 = emojify('pineapple'),
   cool = emojify('cool'),
