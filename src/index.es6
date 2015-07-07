@@ -3,7 +3,7 @@
 import 'babel/polyfill';
 
 //convert the err,data callback to promise resolve/reject calls
-const denode = (resolve, reject) => (err, data) => (err) ? reject(err) : resolve(data);
+const denode = (resolve, reject) => (err, ...args) => (err) ? reject(err) : resolve(...args);
 
 //take a node-style function that sends an (err, result)
 //callback and turns it into a promise
