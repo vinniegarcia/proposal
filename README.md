@@ -3,7 +3,7 @@
 [![travis build information](https://api.travis-ci.org/vinniegarcia/proposal.svg)](https://travis-ci.org/vinniegarcia/proposal)
 [![Coverage Status](https://coveralls.io/repos/vinniegarcia/proposal/badge.svg)](https://coveralls.io/r/vinniegarcia/proposal)
 
-Callback to Promise converter. A `Proposal` is a bridge function between node-style asynchronous functions with callbacks in the form of `(err, data) => void` (which from here on out I'll refer to as `nodebacks`) and ECMAScript 6 `Promises`.
+Callback to Promise converter. A `Proposal` is a bridge function between node-style asynchronous functions with callbacks in the form of `(err, data) => void` or `(err, [data]) => void` (which from here on out I'll refer to as `nodebacks`) and ECMAScript 6 `Promises`.
 
 ## Installation
 Required: [nodejs](http://nodejs.org/) (tested against v0.10 and 0.12), or [io.js](https://iojs.org/) (tested against v1.4.2), [npm](https://www.npmjs.com/).
@@ -96,6 +96,11 @@ var fs = require('fs'),
   var buffy = Proposal(crypto.randomBytes, 512);
   console.log(buffy instanceof Promise); // => true, is not a value
   ```
-3. _I have another question that's not listed here._
+3. _My nodeback has several data return values, like [`child_process.exec`](https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback), which, on success, returns an `stdout` and an `stderr` Buffer. Is this supported?_
+
+  Yes, in this case `resolve` will return an `Array` with the data return values. While ugly-ish,
+  it does work well in practice, as multiple arguments are [not allowed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) in `onFulfilled`.
+
+4. _I have another question that's not listed here._
 
     Raise an issue and I'll get to it as soon as I can. Thanks for reading this far!
