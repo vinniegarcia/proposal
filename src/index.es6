@@ -2,18 +2,20 @@
 
 import 'babel/polyfill';
 
-//convert the err,data callback to promise resolve/reject calls
-const denode = (resolve, reject) => (err, data) => (err) ? reject(err) : resolve(data);
+// Converts the (err, data) or (err, [data]) callback to Promise resolve/reject calls.
+// Resolves with either the data or the [data] fulfillment argument, as onFulfilled
+// takes exactly one argument (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then).
+const denode = (resolve, reject) => (err, ...args) => (err) ? reject(err) : (args.length > 1 ? resolve([...args]) : resolve(args));
 
-//take a node-style function that sends an (err, result)
-//callback and turns it into a promise
+// Takes a node-style function that sends an (err, result) or (err, [result])
+// callback and turns it into a Promise.
 const promiseMe = (f, ...args) => new Promise((resolve, reject) => f(...args, denode(resolve, reject)));
 
-//waits for parameters before creating the Promise
+// Waits for parameters before creating the Promise.
 const curryWrap = (f) => (...more) => promiseMe(f, ...more);
 
-// if args given, return a promise for the operation.
-// if not, return a new function that waits for more input.
+// If args are given, returns a Promise for the operation.
+// Else, returns a new function that waits for more input.
 const Proposal = (nodefn, ...args) => (args.length > 0) ? promiseMe(nodefn, ...args) : curryWrap(nodefn);
 
 export default Proposal;
