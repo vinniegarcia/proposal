@@ -5,7 +5,7 @@ import 'babel/polyfill';
 // Converts the (err, data) or (err, [data]) callback to Promise resolve/reject calls.
 // Resolves with either the data or the [data] fulfillment argument, as onFulfilled
 // takes exactly one argument (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then).
-const denode = (resolve, reject) => (err, ...args) => (err) ? reject(err) : (args.length > 1 ? resolve([...args]) : resolve(args));
+const denode = (resolve, reject) => (err, ...args) => (err) ? reject(err) : resolve((args.length > 1) ? args : args[0]);
 
 // Takes a node-style function that sends an (err, result) or (err, [result])
 // callback and turns it into a Promise.

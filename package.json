@@ -1,15 +1,15 @@
 {
   "name": "proposal",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Takes a node-style callbacking function and converts it into a Promise automagically",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/**/*.es6",
-    "compile": "babel --experimental -d dist/ src/",
+    "compile": "babel --stage 0 -d dist/ src/",
     "copydata": "mkdir -p dist/test/fixtures && cp -R src/test/fixtures/* dist/test/fixtures/",
     "cc": "npm run compile && npm run copydata",
     "prepublish": "npm run cc",
-    "mocha": "npm run cc && ./node_modules/mocha/bin/_mocha dist/test/*.js",
+    "mocha": "npm run cc && ./node_modules/mocha/bin/_mocha dist/test/*.js --timeout 10000",
     "istanbul": "npm run cc && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly dist/test/*.js",
     "coverage": "npm run cc && istanbul cover ./node_modules/mocha/bin/_mocha --report html dist/test/*.js",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
@@ -32,12 +32,13 @@
   "homepage": "https://github.com/vinniegarcia/proposal",
   "devDependencies": {
     "coveralls": "^2.11.2",
-    "istanbul": "^0.3.7",
-    "mocha": "^2.1.0",
+    "httpreq": "^0.4.12",
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5",
     "mocha-lcov-reporter": "0.0.2",
     "node-emoji": "^0.1.0"
   },
   "dependencies": {
-    "babel": "^4.6.3"
+    "babel": "^5.6.14"
   }
 }
