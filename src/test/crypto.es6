@@ -17,7 +17,7 @@ describe(h1('crypto tests where no callbacks makes a method sync'), () => {
   it(cool('returns promise (async), not a sync buffer'), (done) => {
     const futureBiff = Proposal(crypto.randomBytes, 512);
     ok(futureBiff instanceof Promise && !(futureBiff instanceof Buffer));
-    futureBiff.then(function (biff) {
+    futureBiff.then((biff) => {
       ok(biff instanceof Buffer);
       done();
     })
