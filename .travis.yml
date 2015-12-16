@@ -1,8 +1,17 @@
 language: node_js
 node_js:
-  - "0.12"
-  - "0.10"
-  - "iojs-v1.4.2"
-  - "iojs-v2.3.3"
+  - "4.2.2"
+  - "5.1"
 install: npm i
 script: npm test
+compiler: clang-3.6
+env:
+  - CXX=clang-3.6
+addons:
+  apt:
+    sources:
+      - llvm-toolchain-precise-3.6
+      - ubuntu-toolchain-r-test
+    packages:
+      - clang-3.6
+      - g++-4.8

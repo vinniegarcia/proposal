@@ -29,3 +29,7 @@ node_modules
 
 #generated source
 dist
+
+#vs code files
+.vscode
+jsconfig.json
