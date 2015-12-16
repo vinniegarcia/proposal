@@ -1,24 +1,17 @@
 import test from 'tape'
-import http from 'http'
 import req from 'httpreq'
 import {exec} from 'child_process'
 import { h1, cool, fw } from '../fixtures/emoji'
+import TestServer from '../fixtures/http-server'
 import Proposal from '../../index'
 
-test(h1('multiple return values test'), async function (t) {
+test(h1('multiple return values test'), async (t) => {
   const HOST = '127.0.0.1'
   const PORT = 8912
-  const URL = `http://${HOST}:${PORT}`
+  const URL = `http://${HOST}:${PORT}/`
   
-  const handler = (req, res) => {
-    res.writeHead(200)
-    res.end(fw('TEST RESULT\n'))
-  }
-  const serv = http.createServer(handler)
-  serv.on('listening', () => {
-    console.log(fw(`server listening at ${URL}`))
-  })
-  serv.listen(PORT)
+  const serv = TestServer(PORT)
+  serv.start()
 
   try {
     const getIt = Proposal(req.get)
@@ -36,6 +29,6 @@ test(h1('multiple return values test'), async function (t) {
     t.fail(err)
   }
   
-  serv.close(t.end)
+  serv.stop(t.end)
 
 })

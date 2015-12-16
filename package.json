@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "standard src/**/*.js",
-    "compile": "babel -d dist/ src/",
+    "compile": "babel -d dist src",
     "copydata": "mkdir -p dist/test/fixtures && cp -R src/test/fixtures/*.json dist/test/fixtures/",
     "cc": "npm run compile && npm run copydata",
     "prepublish": "npm run cc",
@@ -46,7 +46,7 @@
     "tape": "^4.2.2"
   },
   "dependencies": {
-    "babel": "^6",
+    "babel": "^6.3.13",
     "babel-runtime": "^6.3.19"
   }
 }
