@@ -8,17 +8,22 @@ import { h1, cool, fw } from './fixtures/emoji';
 import Proposal from '../index';
 
 describe(h1('multiple return values test'), () => {
+  const PORT = 8912;
+  let url;
+  
   const handler = (req, res) => {
       res.writeHead(200);
       res.end(fw('TEST RESULT\n'));
     },
       serv = http.createServer(handler);
     serv.on('listening', () => {
-       console.log(fw('server listening'));
+      const { address, port } = serv.address();
+      url = `http://${address}:${port}/`;
+      console.log(fw(`server listening at ${url}`));
     });
 
   before((done) => {
-    serv.listen(8912);
+    serv.listen(PORT);
     done();
   });
 
@@ -26,23 +31,26 @@ describe(h1('multiple return values test'), () => {
     serv.close(done);
   });
 
-  it(cool('returns one value, the response of a http get call'), (done) => {
-    const getIt = Proposal(req.get);
+  it(cool('returns one value, the response of a http get call'), async (done) => {
 
-    getIt('http://localhost:8912/').then((response) => {
+    try {
+      const getIt = Proposal(req.get);
+      const response = await getIt(url);
       ok(!Array.isArray(response));
       done();
-    })
-    .catch(done);
+    } catch (err) {
+      done(err);
+    }
+    
   });
 
   it(cool('returns multiple values, the stdout and stderr from an executed child process'),
-    async function (done) {
+    async (done) => {
       this.timeout(10000);
 
       const futureExec = Proposal(exec);
       try {
-        const [stout, sterr] = await futureExec('curl -# http://127.0.0.1:8912/', {});
+        const [stout, sterr] = await futureExec(`curl -# ${url}`, {});
         ok(typeof stout === 'string' && typeof sterr === 'string');
         done();
       } catch (err) {
