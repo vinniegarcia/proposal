@@ -8,10 +8,16 @@ import Proposal from '../index';
 describe(h1('crypto tests where no callbacks makes a method sync'), () => {
 
   it(cool('properly creates Proposal for a crypto nodeback'), async (done) => {
-    const buffy = await Proposal(crypto.randomBytes, 512);
-    ok(buffy.length === 512);
-    ok(buffy instanceof Buffer && !(buffy instanceof Promise));
-    done();
+    
+    try {
+      const buffy = await Proposal(crypto.randomBytes, 512);
+      ok(buffy.length === 512);
+      ok(buffy instanceof Buffer && !(buffy instanceof Promise));
+      done();
+    } catch (err) {
+      done(err);
+    }
+    
   });
 
   it(cool('returns promise (async), not a sync buffer'), (done) => {
