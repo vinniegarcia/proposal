@@ -12,11 +12,17 @@ import Proposal from '../index';
 describe(h1('async/await test'), () => {
 
   it(cool('A-weits'), async (done) => {
-    // you can use await in an async function like this one
-    const farley = JSON.parse(await Proposal(fs.readFile, sampleFile));
+    
+    try {
+      // you can use await in an async function like this one
+      const farley = JSON.parse(await Proposal(fs.readFile, sampleFile));
 
-    ok(farley && farley.name.includes('Farley'), errify('Farley not found!'));
-    done();
+      ok(farley && farley.name.includes('Farley'), errify('Farley not found!'));
+      done();
+    } catch (err) {
+      done(err);
+    }
+    
   });
 
 });
