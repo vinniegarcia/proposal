@@ -7,9 +7,8 @@ import {errify, h1, cool, fw} from './fixtures/emoji';
 import Proposal from '../index';
 
 describe(h1('Proposal test (callback-only nodeback)'), () => {
-  it(cool('Tests a Proposal against a nodeback with no args'), function (done) {
+  it(cool('Tests a Proposal against a nodeback with no args'), (done) => {
     const handler = (req, res) => {
-      console.log('hey');
       res.writeHead(200);
       res.end('hello world\n');
     },
