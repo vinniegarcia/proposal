@@ -8,8 +8,9 @@ import { h1, cool, fw } from './fixtures/emoji';
 import Proposal from '../index';
 
 describe(h1('multiple return values test'), () => {
-  const PORT = 8912;
-  let url;
+  const HOST = '127.0.0.1', 
+    PORT = 8912,
+    URL = `http://${HOST}:${PORT}`;
   
   const handler = (req, res) => {
       res.writeHead(200);
@@ -17,9 +18,7 @@ describe(h1('multiple return values test'), () => {
     },
       serv = http.createServer(handler);
     serv.on('listening', () => {
-      const { address, port } = serv.address();
-      url = `http://${address}:${port}/`;
-      console.log(fw(`server listening at ${url}`));
+      console.log(fw(`server listening at ${URL}`));
     });
 
   before((done) => {
@@ -35,7 +34,7 @@ describe(h1('multiple return values test'), () => {
 
     try {
       const getIt = Proposal(req.get);
-      const response = await getIt(url);
+      const response = await getIt(URL);
       ok(!Array.isArray(response));
       done();
     } catch (err) {
@@ -46,17 +45,18 @@ describe(h1('multiple return values test'), () => {
 
   it(cool('returns multiple values, the stdout and stderr from an executed child process'),
     async (done) => {
+      
       this.timeout(10000);
-
-      const futureExec = Proposal(exec);
       try {
-        const [stout, sterr] = await futureExec(`curl -# ${url}`, {});
+        const futureExec = Proposal(exec);
+        const [stout, sterr] = await futureExec(`curl -# ${URL}`, {});
         ok(typeof stout === 'string' && typeof sterr === 'string');
         done();
       } catch (err) {
         done(err);
       }
     }
+    
   );
 
 });
