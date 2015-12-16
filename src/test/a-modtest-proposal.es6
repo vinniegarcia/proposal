@@ -22,7 +22,7 @@ describe(h1('Proposal tests'), () => {
   const read = fs.readFile;
 
   it(cool(`Should return a Promise when a Proposal has arguments`),
-    function (done) {
+    (done) => {
       const readPromise = Proposal(read, sampleFile),
         isAPromise = (readPromise instanceof Promise);
       ok(isAPromise, errify('Proposal broke its Promise!'));
@@ -31,7 +31,7 @@ describe(h1('Proposal tests'), () => {
 
   it(cool(`Returns a function that waits for more input
     if Proposal has only one arguments`),
-    function (done) {
+    (done) => {
       const chickenCurry = Proposal(read),
         curryIsntPromise = !(chickenCurry instanceof Promise),
         curryIsFunction = (chickenCurry instanceof Function);
