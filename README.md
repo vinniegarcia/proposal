@@ -5,8 +5,14 @@
 
 Callback to Promise converter. A `Proposal` is a bridge function between node-style asynchronous functions with callbacks in the form of `(err, data) => void` or `(err, [data]) => void` (which from here on out I'll refer to as `nodebacks`) and ECMAScript 6 `Promises`.
 
+## UPGRADE NOTE:
+v3.x no longer uses the Babel polyfill, which is great! No more babel conflicts! 
+
+But...now you have to bring your own Promises. If you're using a recent browser or
+node 4+ no problem, but otherwise, find a good Promise lib like Bluebird and use it.
+
 ## Installation
-Required: [nodejs](http://nodejs.org/) (tested against v0.10 and 0.12), or [io.js](https://iojs.org/) (tested against v1.4.2), [npm](https://www.npmjs.com/).
+Required: [nodejs](http://nodejs.org/) v4+, or another environment with Promises available in the environment.
 ```
 npm i proposal --save
 ```
