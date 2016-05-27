@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint src/**/*.es6",
-    "compile": "babel --stage 0 -d dist/ src/",
+    "compile": "babel -d dist/ src/",
     "copydata": "mkdir -p dist/test/fixtures && cp -R src/test/fixtures/* dist/test/fixtures/",
     "cc": "npm run compile && npm run copydata",
     "prepublish": "npm run cc",
@@ -19,6 +19,9 @@
     "type": "git",
     "url": "https://github.com/vinniegarcia/proposal.git"
   },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "keywords": [
     "promise",
     "callback",
@@ -31,14 +34,18 @@
   },
   "homepage": "https://github.com/vinniegarcia/proposal",
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.9.0",
+    "babel-preset-es2015-node4": "^2.1.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "babel-preset-stage-3": "^6.5.0",
     "coveralls": "^2.11.2",
     "httpreq": "^0.4.12",
     "istanbul": "^0.3.17",
     "mocha": "^2.2.5",
     "mocha-lcov-reporter": "0.0.2",
-    "node-emoji": "^0.1.0"
+    "node-emoji": "^0.1.0",
+    "nyc": "^6.4.4"
   },
-  "dependencies": {
-    "babel": "^5.6.14"
-  }
+  "dependencies": {}
 }

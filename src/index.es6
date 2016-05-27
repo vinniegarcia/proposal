@@ -1,7 +1,5 @@
 'use strict';
 
-import 'babel/polyfill';
-
 // Converts the (err, data) or (err, [data]) callback to Promise resolve/reject calls.
 // Resolves with either the data or the [data] fulfillment argument, as onFulfilled
 // takes exactly one argument (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then).
